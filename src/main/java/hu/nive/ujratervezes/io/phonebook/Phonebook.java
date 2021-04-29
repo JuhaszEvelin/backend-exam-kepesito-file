@@ -19,8 +19,8 @@ public class Phonebook {
     }
 
     private void writeFile(Map<String, String> contacts, File file) {
-        try (FileWriter fileWriter = new FileWriter(file, true)){
-            for (Map.Entry<String, String> entry : contacts.entrySet() ) {
+        try (FileWriter fileWriter = new FileWriter(file, true)) {
+            for (Map.Entry<String, String> entry : contacts.entrySet()) {
                 String name = entry.getKey();
                 String phoneNum = entry.getValue();
                 fileWriter.append(name + ": " + phoneNum + System.lineSeparator());
