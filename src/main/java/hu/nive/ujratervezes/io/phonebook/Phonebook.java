@@ -1,5 +1,8 @@
 package hu.nive.ujratervezes.io.phonebook;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Map;
 
 public class Phonebook {
@@ -19,6 +22,23 @@ public class Phonebook {
             throw new IllegalArgumentException();
         }
 
+        File file = new File(output);
+        try {
+            file.delete();
+            file.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try (FileWriter fileWriter = new FileWriter(file, true)){
+            for (Map.Entry<String, String> entry : contacts.entrySet() ) {
+                String name = entry.getKey();
+                String phoneNum = entry.getValue();
+                fileWriter.append(name + ": " + phoneNum + System.lineSeparator());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 }
